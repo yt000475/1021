@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>歲月臺灣：探索清朝時期的臺灣生活與文化</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Anime.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <!-- FontAwesome for Vintage Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Noto Serif TC (Serif Style for Vintage Aesthetics) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        rice: '#FDFBF7',
+                        'rice-dark': '#F4EFE6',
+                        sepia: {
+                            100: '#E8DFD1',
+                            300: '#C8B9A6',
+                            700: '#5C4A3E',
+                            900: '#2C1E16',
+                        },
+                        crimson: {
+                            DEFAULT: '#8B261D',
+                            hover: '#6E1C15',
+                            light: '#A63328',
+                        },
+                        amber: {
+                            gold: '#D4AF37',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Noto Serif TC"', 'serif'],
+                        calligraphy: ['"Ma Shan Zheng"', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FDFBF7;
+            color: #2C1E16;
+            font-family: 'Noto Serif TC', serif;
+            background-image: radial-gradient(#2c1e16 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+            background-color: #fdfbf7;
+        }
+
+        /* Vintage Paper Overlay Texture Effect */
+        .paper-texture {
+            position: relative;
+        }
+        .paper-texture::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0.03;
+            pointer-events: none;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            z-index: 10;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F4EFE6;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #8B261D;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6E1C15;
+        }
+
+        /* Calligraphy Vertical Text Badge */
+        .vertical-text {
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+        }
+
+        .border-pattern {
+            border-image: linear-gradient(to bottom, #8B261D, #D4AF37, #8B261D) 1;
+        }
+
+        /* Modal Blur */
+        .backdrop-blur-custom {
+            backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+<body class="paper-texture min-h-screen selection:bg-crimson selection:text-white">
+
+    <header class="fixed top-0 left-0 right-0 z-50 bg-rice/90 backdrop-blur-md border-b border-sepia-300 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-full bg-crimson text-rice flex items-center justify-center font-calligraphy text-2xl shadow-md group-hover:rotate-12 transition-transform duration-300">
+                    清
+                </div>
+                <div>
+                    <span class="font-calligraphy text-2xl font-bold tracking-wider text-crimson block leading-none">歲月臺灣</span>
+                    <span class="text-xs text-sepia-700 tracking-widest block mt-1">清朝生活與文化探索</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex space-x-8 text-sm font-semibold text-sepia-900">
+                <a href="#history" class="hover:text-crimson transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-crimson hover:after:w-full after:transition-all">演進歷史</a>
+                <a href="#lifestyle" class="hover:text-crimson transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-crimson hover:after:w-full after:transition-all">服飾日常</a>
+                <a href="#architecture" class="hover:text-crimson transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-crimson hover:after:w-full after:transition-all">古蹟建築</a>
+                <a href="#culture" class="hover:text-crimson transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-crimson hover:after:w-full after:transition-all">信仰節慶</a>
+                <a href="#cuisine" class="hover:text-crimson transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-crimson hover:after:w-full after:transition-all">傳統風味</a>
+            </nav>
+
+            <button id="mobileMenuBtn" class="md:hidden text-sepia-900 text-2xl focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Nav -->
+        <div id="mobileMenu" class="hidden md:hidden bg-rice-dark border-b border-sepia-300 px-6 py-4 flex flex-col space-y-3 font-semibold text-sepia-900">
+            <a href="#history" class="hover:text-crimson py-1">演進歷史</a>
+            <a href="#lifestyle" class="hover:text-crimson py-1">服飾日常</a>
+            <a href="#architecture" class="hover:text-crimson py-1">古蹟建築</a>
+            <a href="#culture" class="hover:text-crimson py-1">信仰節慶</a>
+            <a href="#cuisine" class="hover:text-crimson py-1">傳統風味</a>
+        </div>
+    </header>
+
+    <section class="relative min-h-screen flex items-center justify-center pt-24 pb-12 px-4 overflow-hidden">
+        <!-- Background Decorative Ornaments -->
+        <div class="absolute inset-0 z-0 opacity-10 flex justify-between items-center pointer-events-none px-8">
+            <div class="text-[18rem] font-calligraphy text-sepia-900 select-none">臺</div>
+            <div class="text-[18rem] font-calligraphy text-sepia-900 select-none">灣</div>
+        </div>
+
+        <div class="max-w-4xl mx-auto text-center z-10 space-y-8">
+            <div class="inline-block relative">
+                <div class="hero-badge opacity-0 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-crimson/30 bg-crimson/5 text-crimson text-sm font-semibold mb-4">
+                    <i class="fa-solid fa-scroll"></i> 台灣歷史文化專題講座與導覽
+                </div>
+            </div>
+
+            <h1 class="hero-title opacity-0 text-4xl sm:text-6xl md:text-7xl font-bold font-serif text-sepia-900 tracking-tight leading-tight">
+                重回渡台時期<br>
+                <span class="text-crimson font-calligraphy font-normal text-5xl sm:text-7xl md:text-8xl">清代臺灣生活與采風</span>
+            </h1>
+
+            <p class="hero-desc opacity-0 text-base sm:text-lg text-sepia-700 max-w-2xl mx-auto leading-relaxed">
+                穿越二百餘年時空，探尋開臺灣「唐山過臺灣」的墾拓足跡。從民間衣著、合院大厝到熱鬧廟會與街巷美食，一同感受古典臺灣的生命力與人文魅力。
+            </p>
+
+            <div class="hero-btn opacity-0 flex flex-wrap justify-center gap-4 pt-4">
+                <a href="#history" class="px-8 py-3.5 bg-crimson hover:bg-crimson-hover text-rice font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2">
+                    開始探索故事 <i class="fa-solid fa-arrow-down"></i>
+                </a>
+                <a href="#architecture" class="px-8 py-3.5 bg-rice-dark hover:bg-sepia-100 text-sepia-900 font-semibold rounded-lg border border-sepia-300 transition-all duration-300">
+                    尋訪現存古蹟
+                </a>
+            </div>
+
+            <div class="pt-12 flex justify-center gap-12 text-sepia-700 text-sm font-semibold">
+                <div class="flex flex-col items-center">
+                    <span class="text-2xl text-crimson font-serif font-bold">212 年</span>
+                    <span class="text-xs text-sepia-700 mt-1">清領時期總長 (1684-1895)</span>
+                </div>
+                <div class="w-px h-10 bg-sepia-300"></div>
+                <div class="flex flex-col items-center">
+                    <span class="text-2xl text-crimson font-serif font-bold">一府二鹿三艋舺</span>
+                    <span class="text-xs text-sepia-700 mt-1">三大繁華貿易港市</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="history" class="py-24 bg-rice-dark/50 border-y border-sepia-300 relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-crimson font-semibold tracking-widest text-sm uppercase">History Timeline</span>
+                <h2 class="text-3xl sm:text-4xl font-bold font-serif text-sepia-900 mt-2">清朝時期臺灣歷史大事紀</h2>
+                <div class="w-16 h-1 bg-crimson mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Interactive Horizontal Scroll Timeline -->
+            <div class="relative">
+                <!-- Timeline Central Line -->
+                <div class="hidden md:block absolute top-1/2 left-0 right-0 h-1 bg-sepia-300 -translate-y-1/2 z-0"></div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 relative z-10">
+                    <!-- Timeline Card 1 -->
+                    <div class="timeline-card bg-rice p-6 rounded-xl border border-sepia-300 shadow-md hover:border-crimson transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="inline-block px-3 py-1 bg-crimson/10 text-crimson rounded-full text-xs font-bold mb-3">1684 年 (康熙23年)</div>
+                            <h3 class="text-xl font-bold text-sepia-900 mb-2">納入版圖與設府</h3>
+                            <p class="text-sm text-sepia-700 leading-relaxed">施琅攻臺後，清朝正式將臺灣納入版圖，設立「臺灣府」，下轄臺灣、鳳山、諸羅三縣，隸屬福建省。</p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-sepia-100 flex items-center gap-2 text-xs text-sepia-700">
+                            <i class="fa-solid fa-anchor text-crimson"></i> 渡臺禁令頒布時期
+                        </div>
+                    </div>
+
+                    <!-- Timeline Card 2 -->
+                    <div class="timeline-card bg-rice p-6 rounded-xl border border-sepia-300 shadow-md hover:border-crimson transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="inline-block px-3 py-1 bg-crimson/10 text-crimson rounded-full text-xs font-bold mb-3">1784 年 (乾隆49年)</div>
+                            <h3 class="text-xl font-bold text-sepia-900 mb-2">一府二鹿三艋舺</h3>
+                            <p class="text-sm text-sepia-700 leading-relaxed">開放鹿港與福建蚶江對渡，商業蓬勃發展，確立了臺灣中北部貿易樞紐地位，呈現三足鼎立榮景。</p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-sepia-100 flex items-center gap-2 text-xs text-sepia-700">
+                            <i class="fa-solid fa-ship text-crimson"></i> 郊商貿易黃金時代
+                        </div>
+                    </div>
+
+                    <!-- Timeline Card 3 -->
+                    <div class="timeline-card bg-rice p-6 rounded-xl border border-sepia-300 shadow-md hover:border-crimson transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="inline-block px-3 py-1 bg-crimson/10 text-crimson rounded-full text-xs font-bold mb-3">1860 年 (咸豐10年)</div>
+                            <h3 class="text-xl font-bold text-sepia-900 mb-2">開港通商與洋行</h3>
+                            <p class="text-sm text-sepia-700 leading-relaxed">開闢淡水、安平、雞籠、打狗四港。茶葉、樟腦與蔗糖大量出口，臺灣經濟重心逐漸北移。</p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-sepia-100 flex items-center gap-2 text-xs text-sepia-700">
+                            <i class="fa-solid fa-globe text-crimson"></i> 融入世界貿易體系
+                        </div>
+                    </div>
+
+                    <!-- Timeline Card 4 -->
+                    <div class="timeline-card bg-rice p-6 rounded-xl border border-sepia-300 shadow-md hover:border-crimson transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="inline-block px-3 py-1 bg-crimson/10 text-crimson rounded-full text-xs font-bold mb-3">1885 年 (光緒11年)</div>
+                            <h3 class="text-xl font-bold text-sepia-900 mb-2">臺灣建省與新政</h3>
+                            <p class="text-sm text-sepia-700 leading-relaxed">清廷正式批准臺灣建省，劉銘傳任首任巡撫，鋪設鐵路、推行郵政與電報，展開近代化建設。</p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-sepia-100 flex items-center gap-2 text-xs text-sepia-700">
+                            <i class="fa-solid fa-train text-crimson"></i> 臺灣近代化起點
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="lifestyle" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <span class="text-crimson font-semibold tracking-widest text-sm uppercase">Daily Life & Costume</span>
+            <h2 class="text-3xl sm:text-4xl font-bold font-serif text-sepia-900 mt-2">傳統服飾與日常生活</h2>
+            <p class="text-sepia-700 mt-2 max-w-2xl mx-auto">從開墾先民的大襠褲到富家大戶的刺繡大襟衫，反映了當時社會階級與漢人文化的融合。</p>
+            <div class="w-16 h-1 bg-crimson mx-auto mt-4 rounded-full"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Item 1 -->
+            <div class="lifestyle-card bg-rice p-8 rounded-2xl border border-sepia-300 shadow-sm hover:shadow-xl transition-all duration-300 group">
+                <div class="w-16 h-16 rounded-full bg-crimson/10 text-crimson flex items-center justify-center text-2xl mb-6 group-hover:bg-crimson group-hover:text-rice transition-colors">
+                    <i class="fa-solid fa-shirt"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-sepia-900 mb-3">大襟衫與藍衫</h3>
+                <p class="text-sepia-700 text-sm leading-relaxed mb-4">
+                    清代臺灣漢人女子多穿著「大襟衫」，右衽開襟，邊緣飾以細緻的繡花滾邊。客家婦女則偏好染自植物「馬藍」的耐髒藍衫，呈現樸實勤勞的精神。
+                </p>
+                <div class="bg-rice-dark p-3 rounded-lg text-xs text-sepia-700 font-semibold">
+                    💡 特徵：右衽大襟、寬袖盤扣、植物染采
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="lifestyle-card bg-rice p-8 rounded-2xl border border-sepia-300 shadow-sm hover:shadow-xl transition-all duration-300 group">
+                <div class="w-16 h-16 rounded-full bg-crimson/10 text-crimson flex items-center justify-center text-2xl mb-6 group-hover:bg-crimson group-hover:text-rice transition-colors">
+                    <i class="fa-solid fa-wheat-awn"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-sepia-900 mb-3">開墾民情與衣著</h3>
+                <p class="text-sepia-700 text-sm leading-relaxed mb-4">
+                    一般農夫與羅漢腳（無業單身男性）平日多赤足穿著對襟粗布短衫與大襠褲，頭戴斗笠防曬。粗布耐磨，適應臺灣溼熱墾荒環境。
+                </p>
+                <div class="bg-rice-dark p-3 rounded-lg text-xs text-sepia-700 font-semibold">
+                    💡 特徵：麻布粗衣、寬鬆大襠、編織斗笠
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="lifestyle-card bg-rice p-8 rounded-2xl border border-sepia-300 shadow-sm hover:shadow-xl transition-all duration-300 group">
+                <div class="w-16 h-16 rounded-full bg-crimson/10 text-crimson flex items-center justify-center text-2xl mb-6 group-hover:bg-crimson group-hover:text-rice transition-colors">
+                    <i class="fa-solid fa-gem"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-sepia-900 mb-3">紳商貴族的華服</h3>
+                <p class="text-sepia-700 text-sm leading-relaxed mb-4">
+                    隨著貿易興盛，富商與舉人秀才穿著綢緞長袍馬褂，佩戴玉佩、扇套與銀飾。女子節慶時穿著三寸金蓮繡花鞋與精美三寸彩繡圍裙。
+                </p>
+                <div class="bg-rice-dark p-3 rounded-lg text-xs text-sepia-700 font-semibold">
+                    💡 特徵：綢緞羅紗、刺繡細緻、金銀飾品
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="architecture" class="py-24 bg-sepia-900 text-rice relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-amber-gold font-semibold tracking-widest text-sm uppercase">Architecture & Historic Sites</span>
+                <h2 class="text-3xl sm:text-4xl font-bold font-serif text-rice mt-2">傳統建築與經典古蹟</h2>
+                <p class="text-sepia-300 mt-2 max-w-2xl mx-auto">點擊下方古蹟卡片，深入了解臺灣清代紅磚綠瓦間的建築智慧與歷史意涵。</p>
+                <div class="w-16 h-1 bg-amber-gold mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Site 1: 安平古堡/赤崁樓 -->
+                <div onclick="openModal('chikan')" class="architect-card bg-sepia-700/50 rounded-xl border border-sepia-700 overflow-hidden cursor-pointer hover:border-amber-gold transition-all duration-300 group">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1590059208016-1634709d7335?auto=format&fit=crop&w=800&q=80" alt="赤崁樓" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/800x600/5C4A3E/E8DFD1?text=台南赤崁樓'">
+                        <span class="absolute top-3 right-3 bg-crimson text-xs font-bold px-2.5 py-1 rounded">臺南</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-rice group-hover:text-amber-gold transition-colors">臺南赤崁樓 (普羅民遮城)</h3>
+                        <p class="text-sepia-300 text-sm mt-2 line-clamp-2">原為荷蘭人建普羅民遮城，清領時期改建為漢式樓閣，內有乾隆帝賜予的九座蠲題御碑。</p>
+                        <div class="mt-4 flex items-center justify-between text-xs text-amber-gold">
+                            <span><i class="fa-solid fa-archway mr-1"></i> 閩南式樓閣與龜碑</span>
+                            <span class="underline">點擊看詳情 <i class="fa-solid fa-chevron-right ml-1"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Site 2: 鹿港龍山寺 -->
+                <div onclick="openModal('longshan')" class="architect-card bg-sepia-700/50 rounded-xl border border-sepia-700 overflow-hidden cursor-pointer hover:border-amber-gold transition-all duration-300 group">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=800&q=80" alt="鹿港龍山寺" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/800x600/5C4A3E/E8DFD1?text=鹿港龍山寺'">
+                        <span class="absolute top-3 right-3 bg-crimson text-xs font-bold px-2.5 py-1 rounded">彰化</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-rice group-hover:text-amber-gold transition-colors">鹿港龍山寺</h3>
+                        <p class="text-sepia-300 text-sm mt-2 line-clamp-2">清乾隆年間遷建，被譽為「臺灣紫禁城」。保留極高藝術價值的八卦藻井與精細木雕。</p>
+                        <div class="mt-4 flex items-center justify-between text-xs text-amber-gold">
+                            <span><i class="fa-solid fa-gopuram mr-1"></i> 經典木雕與藻井</span>
+                            <span class="underline">點擊看詳情 <i class="fa-solid fa-chevron-right ml-1"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Site 3: 板橋林家花園 -->
+                <div onclick="openModal('linfamily')" class="architect-card bg-sepia-700/50 rounded-xl border border-sepia-700 overflow-hidden cursor-pointer hover:border-amber-gold transition-all duration-300 group">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=800&q=80" alt="林本源園邸" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/800x600/5C4A3E/E8DFD1?text=林本源園邸'">
+                        <span class="absolute top-3 right-3 bg-crimson text-xs font-bold px-2.5 py-1 rounded">新北</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-rice group-hover:text-amber-gold transition-colors">板橋林本源園邸</h3>
+                        <p class="text-sepia-300 text-sm mt-2 line-clamp-2">清代臺灣代表性的江南園林建築，包含汲古書屋、方鑑齋、來青閣等，盡顯大戶門第采風。</p>
+                        <div class="mt-4 flex items-center justify-between text-xs text-amber-gold">
+                            <span><i class="fa-solid fa-tree mr-1"></i> 園林水榭與漏窗</span>
+                            <span class="underline">點擊看詳情 <i class="fa-solid fa-chevron-right ml-1"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="culture" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <span class="text-crimson font-semibold tracking-widest text-sm uppercase">Faith & Festivals</span>
+            <h2 class="text-3xl sm:text-4xl font-bold font-serif text-sepia-900 mt-2">民間信仰與節慶活動</h2>
+            <p class="text-sepia-700 mt-2 max-w-2xl mx-auto">先民黑水溝渡海艱辛，寄託信仰求平安，發展出濃厚色彩的廟會祭典。</p>
+            <div class="w-16 h-1 bg-crimson mx-auto mt-4 rounded-full"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="culture-item bg-rice p-6 rounded-2xl border border-sepia-300 flex flex-col sm:flex-row gap-6 items-center">
+                <div class="w-full sm:w-1/3 h-40 bg-crimson/10 rounded-xl flex items-center justify-center text-4xl text-crimson">
+                    <i class="fa-solid fa-synagogue"></i>
+                </div>
+                <div class="w-full sm:w-2/3">
+                    <h3 class="text-xl font-bold text-sepia-900 mb-2">媽祖信仰與迎神賽會</h3>
+                    <p class="text-sm text-sepia-700 leading-relaxed">
+                        媽祖被尊稱為「海神」，是橫渡台灣海峽開墾者的精神寄託。「三月月迎媽祖」在清代即演變為全島盛事，宋江陣、藝閣、北管陣頭熱鬧非凡。
+                    </p>
+                </div>
+            </div>
+
+            <div class="culture-item bg-rice p-6 rounded-2xl border border-sepia-300 flex flex-col sm:flex-row gap-6 items-center">
+                <div class="w-full sm:w-1/3 h-40 bg-crimson/10 rounded-xl flex items-center justify-center text-4xl text-crimson">
+                    <i class="fa-solid fa-fire-flame-curved"></i>
+                </div>
+                <div class="w-full sm:w-2/3">
+                    <h3 class="text-xl font-bold text-sepia-900 mb-2">王爺信仰與燒王船</h3>
+                    <p class="text-sm text-sepia-700 leading-relaxed">
+                        清代臺灣濕熱且多傳染病（瘴癘），沿海地區盛行王爺（千歲）信仰，定期舉行「迎王平安祭典」並建造王船焚燒，祈求驅除瘟疫。
+                    </p>
+                </div>
+            </div>
+
+            <div class="culture-item bg-rice p-6 rounded-2xl border border-sepia-300 flex flex-col sm:flex-row gap-6 items-center">
+                <div class="w-full sm:w-1/3 h-40 bg-crimson/10 rounded-xl flex items-center justify-center text-4xl text-crimson">
+                    <i class="fa-solid fa-ghost"></i>
+                </div>
+                <div class="w-full sm:w-2/3">
+                    <h3 class="text-xl font-bold text-sepia-900 mb-2">中元普渡與搶孤</h3>
+                    <p class="text-sm text-sepia-700 leading-relaxed">
+                        清代因羅漢腳多且族群械鬥頻繁，七月中元普渡特別隆重，祭祀孤魂無主孤魂（老大公）。宜蘭頭城與屏東恆春演變出刺激的「搶孤」競技。
+                    </p>
+                </div>
+            </div>
+
+            <div class="culture-item bg-rice p-6 rounded-2xl border border-sepia-300 flex flex-col sm:flex-row gap-6 items-center">
+                <div class="w-full sm:w-1/3 h-40 bg-crimson/10 rounded-xl flex items-center justify-center text-4xl text-crimson">
+                    <i class="fa-solid fa-masks-theater"></i>
+                </div>
+                <div class="w-full sm:w-2/3">
+                    <h3 class="text-xl font-bold text-sepia-900 mb-2">掌中戲（布袋戲）與歌仔</h3>
+                    <p class="text-sm text-sepia-700 leading-relaxed">
+                        隨著閩南移民引入南管、北管與掌中戲。在廟前搭建戲臺，演繹三國、封神等歷史故事，是清代臺灣民眾最主要的休憩娛樂。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cuisine" class="py-24 bg-rice-dark/50 border-t border-sepia-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-crimson font-semibold tracking-widest text-sm uppercase">Traditional Culinary</span>
+                <h2 class="text-3xl sm:text-4xl font-bold font-serif text-sepia-900 mt-2">傳統美食與地方特色</h2>
+                <p class="text-sepia-700 mt-2 max-w-2xl mx-auto">清代臺灣貿易興盛與農產豐富，孕育出承襲至今古早味的在地飲食習慣。</p>
+                <div class="w-16 h-1 bg-crimson mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="cuisine-card bg-rice p-6 rounded-xl border border-sepia-300 text-center hover:-translate-y-2 transition-transform duration-300">
+                    <div class="w-20 h-20 mx-auto bg-crimson/10 rounded-full flex items-center justify-center text-3xl text-crimson mb-4">
+                        <i class="fa-solid fa-bowl-food"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-sepia-900">担仔麵 (擔仔麵)</h3>
+                    <p class="text-xs text-sepia-700 mt-2 leading-relaxed">
+                        源於清末府城漁民在渡過漁獲淡季（小月）時，挑擔沿街叫賣的麵食，以鮮蝦熬湯底搭配肉燥，為臺灣小吃經典。
+                    </p>
+                </div>
+
+                <div class="cuisine-card bg-rice p-6 rounded-xl border border-sepia-300 text-center hover:-translate-y-2 transition-transform duration-300">
+                    <div class="w-20 h-20 mx-auto bg-crimson/10 rounded-full flex items-center justify-center text-3xl text-crimson mb-4">
+                        <i class="fa-solid fa-cookie"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-sepia-900">鳳梨酥與傳統糕餅</h3>
+                    <p class="text-xs text-sepia-700 mt-2 leading-relaxed">
+                        清代盛行結婚聘餅文化，鹿港與臺南郊商發達，帶動綠豆糕、糕仔崙與鳳梨餅的製作烘焙工藝。
+                    </p>
+                </div>
+
+                <div class="cuisine-card bg-rice p-6 rounded-xl border border-sepia-300 text-center hover:-translate-y-2 transition-transform duration-300">
+                    <div class="w-20 h-20 mx-auto bg-crimson/10 rounded-full flex items-center justify-center text-3xl text-crimson mb-4">
+                        <i class="fa-solid fa-mug-hot"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-sepia-900">烏龍茶與茶金歲月</h3>
+                    <p class="text-xs text-sepia-700 mt-2 leading-relaxed">
+                        1860年代開港後，臺灣烏龍茶（Formosa Tea）揚名歐美，大稻埕茶行林立，成為外銷獲利豐厚的「茶金」。
+                    </p>
+                </div>
+
+                <div class="cuisine-card bg-rice p-6 rounded-xl border border-sepia-300 text-center hover:-translate-y-2 transition-transform duration-300">
+                    <div class="w-20 h-20 mx-auto bg-crimson/10 rounded-full flex items-center justify-center text-3xl text-crimson mb-4">
+                        <i class="fa-solid fa-utensils"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-sepia-900">辦桌文化與酒家菜</h3>
+                    <p class="text-xs text-sepia-700 mt-2 leading-relaxed">
+                        富商巨賈在酒樓（如臺南春風樓）宴客，或慶典時邀請總鋪師搭棚辦桌，融匯閩粵烹調與在地食材。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-sepia-900 text-sepia-300 py-12 border-t border-sepia-700 text-center">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="font-calligraphy text-3xl text-amber-gold mb-2">歲月臺灣</div>
+            <p class="text-xs text-sepia-300">臺灣歷史文化專題學習網站 — 清朝時期篇</p>
+            <div class="w-12 h-0.5 bg-crimson mx-auto my-6"></div>
+            <p class="text-xs text-sepia-300">© 2026 臺灣歷史文化學習平台. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Historic Site Detail Modal Dialog -->
+    <div id="siteModal" class="fixed inset-0 z-50 hidden bg-sepia-900/80 backdrop-blur-custom flex items-center justify-center p-4">
+        <div id="modalContent" class="bg-rice rounded-2xl max-w-2xl w-full border border-sepia-300 overflow-hidden shadow-2xl transform scale-95 opacity-0 transition-all duration-300">
+            <div class="relative h-64">
+                <img id="modalImage" src="" alt="" class="w-full h-full object-cover">
+                <button onclick="closeModal()" class="absolute top-4 right-4 bg-sepia-900/60 text-rice hover:bg-crimson w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <div class="p-6 sm:p-8">
+                <span id="modalLocation" class="text-xs font-bold text-crimson uppercase tracking-wider"></span>
+                <h3 id="modalTitle" class="text-2xl font-bold text-sepia-900 mt-1 mb-4"></h3>
+                <p id="modalDescription" class="text-sepia-700 text-sm leading-relaxed mb-6"></p>
+                <div class="bg-rice-dark p-4 rounded-xl border border-sepia-300 text-xs text-sepia-900">
+                    <strong><i class="fa-solid fa-landmark mr-1"></i> 文化資產價值：</strong>
+                    <span id="modalCulturalValue"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal Data for Historic Sites
+        const modalData = {
+            chikan: {
+                title: "臺南赤崁樓 (普羅min遮城)",
+                location: "臺南市中西區",
+                image: "https://images.unsplash.com/photo-1590059208016-1634709d7335?auto=format&fit=crop&w=800&q=80",
+                description: "赤崁樓前身為1653年荷蘭人建造的普羅民遮城。進入清領時期後，改建為海神廟、文昌閣等漢式閣樓。樓前立有乾隆年間為平定林爽文事件所賜予的九座「蠲題石龜御碑」（贔孥載碑），是清代臺灣極具政治與藝術價值的歷史遺跡。",
+                value: "國定古蹟，見證荷蘭、明鄭至清代臺灣政治中心的轉換。"
+            },
+            longshan: {
+                title: "鹿港龍山寺",
+                location: "彰化縣鹿港鎮",
+                image: "https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=800&q=80",
+                description: "鹿港龍山寺於清乾隆51年（1786年）遷建現址，格局仿福建泉州開元寺。戲臺頂部的「八卦藻井」為全臺保存最精美者，展現極高超的木榫工藝，完全不用一釘一帽，兼具美觀與擴音功能。",
+                value: "國定古蹟，譽為臺灣傳統建築藝術的殿堂。"
+            },
+            linfamily: {
+                title: "板橋林本源園邸",
+                location: "新北市板橋區",
+                image: "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=800&q=80",
+                description: "清咸豐年間由臺灣首富林本源家族興建，耗資數百萬兩白銀。園內亭台樓閣、曲履迴廊、假山水池相映成趣。漏窗樣式豐富，如桃、石榴、蝴蝶等象徵福氣與多子多孫。",
+                value: "國定古蹟，臺灣現存最完整的清代古典江南園林建築。"
+            }
+        };
+
+        // Open Modal Function
+        function openModal(key) {
+            const data = modalData[key];
+            if (!data) return;
+
+            document.getElementById('modalTitle').innerText = data.title;
+            document.getElementById('modalLocation').innerText = data.location;
+            document.getElementById('modalImage').src = data.image;
+            document.getElementById('modalDescription').innerText = data.description;
+            document.getElementById('modalCulturalValue').innerText = data.value;
+
+            const modal = document.getElementById('siteModal');
+            const content = document.getElementById('modalContent');
+            modal.classList.remove('hidden');
+
+            // Anime.js for Modal Opening Animation
+            anime({
+                targets: content,
+                scale: [0.9, 1],
+                opacity: [0, 1],
+                easing: 'easeOutCubic',
+                duration: 350
+            });
+        }
+
+        // Close Modal Function
+        function closeModal() {
+            const modal = document.getElementById('siteModal');
+            const content = document.getElementById('modalContent');
+
+            anime({
+                targets: content,
+                scale: [1, 0.9],
+                opacity: [1, 0],
+                easing: 'easeInCubic',
+                duration: 250,
+                complete: function() {
+                    modal.classList.add('hidden');
+                }
+            });
+        }
+
+        // Mobile Navigation Toggle
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Initialize Anime.js Animations on Page Load & Scroll
+        window.onload = function() {
+            
+            // Hero Section Stagger Animation
+            anime.timeline({
+                easing: 'easeOutExpo'
+            })
+            .add({
+                targets: '.hero-badge',
+                translateY: [20, 0],
+                opacity: [0, 1],
+                duration: 800,
+                delay: 200
+            })
+            .add({
+                targets: '.hero-title',
+                translateY: [30, 0],
+                opacity: [0, 1],
+                duration: 1000,
+            }, '-=500')
+            .add({
+                targets: '.hero-desc',
+                translateY: [20, 0],
+                opacity: [0, 1],
+                duration: 800,
+            }, '-=600')
+            .add({
+                targets: '.hero-btn',
+                translateY: [20, 0],
+                opacity: [0, 1],
+                duration: 800,
+            }, '-=600');
+
+            // Intersection Observer for Scroll Trigger Animations using Anime.js
+            const observerOptions = {
+                threshold: 0.15
+            };
+
+            const animateOnScroll = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const targetClass = entry.target.dataset.animate;
+
+                        if (targetClass === 'timeline') {
+                            anime({
+                                targets: '.timeline-card',
+                                translateY: [50, 0],
+                                opacity: [0, 1],
+                                delay: anime.stagger(180),
+                                duration: 900,
+                                easing: 'easeOutCubic'
+                            });
+                        } else if (targetClass === 'lifestyle') {
+                            anime({
+                                targets: '.lifestyle-card',
+                                translateY: [40, 0],
+                                opacity: [0, 1],
+                                delay: anime.stagger(200),
+                                duration: 800,
+                                easing: 'easeOutQuad'
+                            });
+                        } else if (targetClass === 'architecture') {
+                            anime({
+                                targets: '.architect-card',
+                                scale: [0.9, 1],
+                                opacity: [0, 1],
+                                delay: anime.stagger(200),
+                                duration: 800,
+                                easing: 'easeOutBack'
+                            });
+                        } else if (targetClass === 'culture') {
+                            anime({
+                                targets: '.culture-item',
+                                translateX: [-30, 0],
+                                opacity: [0, 1],
+                                delay: anime.stagger(150),
+                                duration: 700,
+                                easing: 'easeOutQuad'
+                            });
+                        } else if (targetClass === 'cuisine') {
+                            anime({
+                                targets: '.cuisine-card',
+                                translateY: [30, 0],
+                                opacity: [0, 1],
+                                delay: anime.stagger(120),
+                                duration: 600,
+                                easing: 'easeOutCubic'
+                            });
+                        }
+
+                        // Unobserve after animation triggered once
+                        animateOnScroll.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Register Animation Triggers on Sections
+            document.querySelector('#history').setAttribute('data-animate', 'timeline');
+            document.querySelector('#lifestyle').setAttribute('data-animate', 'lifestyle');
+            document.querySelector('#architecture').setAttribute('data-animate', 'architecture');
+            document.querySelector('#culture').setAttribute('data-animate', 'culture');
+            document.querySelector('#cuisine').setAttribute('data-animate', 'cuisine');
+
+            document.querySelectorAll('#history, #lifestyle, #architecture, #culture, #cuisine').forEach(section => {
+                animateOnScroll.observe(section);
+            });
+        };
+    </script>
+</body>
+</html>
